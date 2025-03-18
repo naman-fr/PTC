@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 214 94% 43%;
+    --secondary: 251 86% 57%;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  body {
+    @apply antialiased bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen;
+  }
+
+  input, button, select {
+    @apply transition-all duration-200 ease-out;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-white/20;
+  }
+
+  .floating-label-input {
+    @apply relative pt-4;
+    
+    input {
+      @apply w-full px-4 py-3 rounded-lg border border-gray-200 bg-white/50 focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+    }
+
+    label {
+      @apply absolute left-4 top-5 text-gray-400 transition-all pointer-events-none;
+    }
+
+    input:not(:placeholder-shown) + label,
+    input:focus + label {
+      @apply top-1 text-sm text-blue-600;
+    }
+  }
+
+  .dashboard-card {
+    @apply glass-panel p-6 hover:shadow-2xl hover:-translate-y-1;
+    
+    h2 {
+      @apply text-xl font-semibold mb-2 text-gray-800;
+    }
+    
+    p {
+      @apply text-gray-600;
+    }
+  }
+}
